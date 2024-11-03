@@ -82,6 +82,8 @@ defmodule TestingLiveViewWallabyWeb.Features.QuestionFeatureTest do
           click(session, link("Delete"))
         end)
 
+      # take_screenshot(session)
+
       assert confirmation_message == "Are you sure?"
       refute_has(session, css("#questions > tr > td", text: question.text))
     end

@@ -26,7 +26,7 @@ config :wallaby,
   otp_app: :testing_live_view_wallaby,
   screenshot_on_failure: true,
   chromedriver: [
-    path: "assets/node_modules/chromedriver/bin/chromedriver",
+    path: "/Users/fluxgate/bin/chromedriver",
     headless: true
   ]
 
