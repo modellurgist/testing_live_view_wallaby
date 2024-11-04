@@ -1,4 +1,4 @@
-defmodule SampleAppWeb.Endpoint do
+defmodule TestingLiveViewWallabyWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :sample_app
 
   # The session will be stored in the cookie and signed,
@@ -23,7 +23,7 @@ defmodule SampleAppWeb.Endpoint do
     at: "/",
     from: :sample_app,
     gzip: false,
-    only: SampleAppWeb.static_paths()
+    only: TestingLiveViewWallabyWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -49,5 +49,5 @@ defmodule SampleAppWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug SampleAppWeb.Router
+  plug TestingLiveViewWallabyWeb.Router
 end

@@ -1,4 +1,4 @@
-defmodule SampleApp.MixProject do
+defmodule TestingLiveViewWallaby.MixProject do
   use Mix.Project
 
   def project do
@@ -18,7 +18,7 @@ defmodule SampleApp.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {SampleApp.Application, []},
+      mod: {TestingLiveViewWallaby.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

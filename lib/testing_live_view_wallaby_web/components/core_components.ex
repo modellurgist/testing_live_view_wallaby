@@ -1,4 +1,4 @@
-defmodule SampleAppWeb.CoreComponents do
+defmodule TestingLiveViewWallabyWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -17,7 +17,7 @@ defmodule SampleAppWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import SampleAppWeb.Gettext
+  import TestingLiveViewWallabyWeb.Gettext
 
   @doc """
   Renders a modal.
@@ -661,9 +661,9 @@ defmodule SampleAppWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(SampleAppWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(TestingLiveViewWallabyWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(SampleAppWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(TestingLiveViewWallabyWeb.Gettext, "errors", msg, opts)
     end
   end
 

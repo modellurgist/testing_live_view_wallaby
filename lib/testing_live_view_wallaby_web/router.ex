@@ -1,11 +1,11 @@
-defmodule SampleAppWeb.Router do
-  use SampleAppWeb, :router
+defmodule TestingLiveViewWallabyWeb.Router do
+  use TestingLiveViewWallabyWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, html: {SampleAppWeb.Layouts, :root}
+    plug :put_root_layout, html: {TestingLiveViewWallabyWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,14 +14,14 @@ defmodule SampleAppWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", SampleAppWeb do
+  scope "/", TestingLiveViewWallabyWeb do
     pipe_through :browser
 
     get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", SampleAppWeb do
+  # scope "/api", TestingLiveViewWallabyWeb do
   #   pipe_through :api
   # end
 
@@ -37,7 +37,7 @@ defmodule SampleAppWeb.Router do
     scope "/dev" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: SampleAppWeb.Telemetry
+      live_dashboard "/dashboard", metrics: TestingLiveViewWallabyWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end

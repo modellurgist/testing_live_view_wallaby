@@ -8,18 +8,18 @@
 import Config
 
 config :sample_app,
-  ecto_repos: [SampleApp.Repo],
+  ecto_repos: [TestingLiveViewWallaby.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :sample_app, SampleAppWeb.Endpoint,
+config :sample_app, TestingLiveViewWallabyWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: SampleAppWeb.ErrorHTML, json: SampleAppWeb.ErrorJSON],
+    formats: [html: TestingLiveViewWallabyWeb.ErrorHTML, json: TestingLiveViewWallabyWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: SampleApp.PubSub,
+  pubsub_server: TestingLiveViewWallaby.PubSub,
   live_view: [signing_salt: "aaaaaaaa"]
 
 # Configures the mailer
@@ -29,7 +29,7 @@ config :sample_app, SampleAppWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :sample_app, SampleApp.Mailer, adapter: Swoosh.Adapters.Local
+config :sample_app, TestingLiveViewWallaby.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
