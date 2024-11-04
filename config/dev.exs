@@ -58,7 +58,7 @@ config :sample_app, SampleAppWeb.Endpoint,
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/sample_app_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/testing_live_view_wallaby/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
