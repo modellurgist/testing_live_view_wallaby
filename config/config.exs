@@ -7,15 +7,20 @@
 # General application configuration
 import Config
 
-config :testing_live_view_wallaby,
-  ecto_repos: [TestingLiveViewWallaby.Repo]
+config :sample_app,
+  ecto_repos: [SampleApp.Repo],
+  generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
+config :sample_app, SampleAppWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: TestingLiveViewWallabyWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: TestingLiveViewWallaby.PubSub,
-  live_view: [signing_salt: "kk9d3Ik/"]
+  adapter: Bandit.PhoenixAdapter,
+  render_errors: [
+    formats: [html: SampleAppWeb.ErrorHTML, json: SampleAppWeb.ErrorJSON],
+    layout: false
+  ],
+  pubsub_server: SampleApp.PubSub,
+  live_view: [signing_salt: "aaaaaaaa"]
 
 # Configures the mailer
 #
@@ -24,19 +29,28 @@ config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :testing_live_view_wallaby, TestingLiveViewWallaby.Mailer, adapter: Swoosh.Adapters.Local
-
-# Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
+config :sample_app, SampleApp.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.14.0",
-  default: [
+  version: "0.17.11",
+  sample_app: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+# Configure tailwind (the version is required)
+config :tailwind,
+  version: "3.4.3",
+  sample_app: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
   ]
 
 # Configures Elixir's Logger
