@@ -7,12 +7,12 @@
 # General application configuration
 import Config
 
-config :sample_app,
+config :testing_live_view_wallaby,
   ecto_repos: [TestingLiveViewWallaby.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :sample_app, TestingLiveViewWallabyWeb.Endpoint,
+config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
@@ -29,7 +29,7 @@ config :sample_app, TestingLiveViewWallabyWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :sample_app, TestingLiveViewWallaby.Mailer, adapter: Swoosh.Adapters.Local
+config :testing_live_view_wallaby, TestingLiveViewWallaby.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,

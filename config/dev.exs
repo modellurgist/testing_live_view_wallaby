@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-config :sample_app, TestingLiveViewWallaby.Repo,
+config :testing_live_view_wallaby, TestingLiveViewWallaby.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
@@ -16,7 +16,7 @@ config :sample_app, TestingLiveViewWallaby.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :sample_app, TestingLiveViewWallabyWeb.Endpoint,
+config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -25,8 +25,8 @@ config :sample_app, TestingLiveViewWallabyWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "aaaaaaaa",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:sample_app, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:sample_app, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:testing_live_view_wallaby, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:testing_live_view_wallaby, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -53,7 +53,7 @@ config :sample_app, TestingLiveViewWallabyWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :sample_app, TestingLiveViewWallabyWeb.Endpoint,
+config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
@@ -63,7 +63,7 @@ config :sample_app, TestingLiveViewWallabyWeb.Endpoint,
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :sample_app, dev_routes: true
+config :testing_live_view_wallaby, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

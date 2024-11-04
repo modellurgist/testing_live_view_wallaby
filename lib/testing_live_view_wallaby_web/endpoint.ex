@@ -1,5 +1,5 @@
 defmodule TestingLiveViewWallabyWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :sample_app
+  use Phoenix.Endpoint, otp_app: :testing_live_view_wallaby
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -21,7 +21,7 @@ defmodule TestingLiveViewWallabyWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :sample_app,
+    from: :testing_live_view_wallaby,
     gzip: false,
     only: TestingLiveViewWallabyWeb.static_paths()
 
@@ -31,7 +31,7 @@ defmodule TestingLiveViewWallabyWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :sample_app
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :testing_live_view_wallaby
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

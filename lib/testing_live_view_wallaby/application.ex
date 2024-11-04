@@ -10,7 +10,7 @@ defmodule TestingLiveViewWallaby.Application do
     children = [
       TestingLiveViewWallabyWeb.Telemetry,
       TestingLiveViewWallaby.Repo,
-      {DNSCluster, query: Application.get_env(:sample_app, :dns_cluster_query) || :ignore},
+      {DNSCluster, query: Application.get_env(:testing_live_view_wallaby, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: TestingLiveViewWallaby.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: TestingLiveViewWallaby.Finch},
