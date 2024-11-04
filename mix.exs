@@ -7,8 +7,10 @@ defmodule TestingLiveViewWallaby.MixProject do
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
+      # compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
+      preferred_cli_env: [e2e: :test, "test.watch": :test],
       deps: deps()
     ]
   end
@@ -58,7 +60,9 @@ defmodule TestingLiveViewWallaby.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:wallaby, "~> 0.29.0", runtime: false, only: :test},
+      {:mix_test_watch, "~> 1.0", only: :test}
     ]
   end
 
@@ -74,6 +78,12 @@ defmodule TestingLiveViewWallaby.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      # e2e: [
+      #   "esbuild default",
+      #   "ecto.create --quiet",
+      #   "ecto.migrate --quiet",
+      #   "test --only \"e2e\""
+      # ],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind testing_live_view_wallaby", "esbuild testing_live_view_wallaby"],
       "assets.deploy": [

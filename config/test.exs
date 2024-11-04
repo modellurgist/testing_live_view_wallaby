@@ -17,8 +17,20 @@ config :testing_live_view_wallaby, TestingLiveViewWallaby.Repo,
 # you can enable the server option below.
 config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "aaaaaaaa",
-  server: false
+  secret_key_base: "YZJRcRqYdb9ChAFw+wuLQ2ArKyqYfosHKqg9AaoqDXlarAS8Ny7oSv3PrXwgdYq5",
+  server: true
+
+config :testing_live_view_wallaby, sql_sandbox: true
+
+config :wallaby,
+  otp_app: :testing_live_view_wallaby,
+  screenshot_on_failure: true,
+  chromedriver: [
+    path: "/Users/fluxgate/bin/chromedriver",
+    headless: true
+  ]
+
+config :mix_test_watch, clear: true
 
 # In test we don't send emails
 config :testing_live_view_wallaby, TestingLiveViewWallaby.Mailer, adapter: Swoosh.Adapters.Test
