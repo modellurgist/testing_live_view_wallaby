@@ -75,10 +75,10 @@ defmodule TestingLiveViewWallaby.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind sample_app", "esbuild sample_app"],
+      "assets.build": ["tailwind testing_live_view_wallaby", "esbuild testing_live_view_wallaby"],
       "assets.deploy": [
-        "tailwind sample_app --minify",
-        "esbuild sample_app --minify",
+        "tailwind testing_live_view_wallaby --minify",
+        "esbuild testing_live_view_wallaby --minify",
         "phx.digest"
       ]
     ]

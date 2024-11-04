@@ -5,7 +5,7 @@ config :testing_live_view_wallaby, TestingLiveViewWallaby.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "sample_app_dev",
+  database: "testing_live_view_wallaby_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

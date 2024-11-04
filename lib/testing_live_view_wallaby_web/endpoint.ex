@@ -6,7 +6,7 @@ defmodule TestingLiveViewWallabyWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_sample_app_key",
+    key: "_testing_live_view_wallaby_key",
     signing_salt: "aaaaaaaa",
     same_site: "Lax"
   ]

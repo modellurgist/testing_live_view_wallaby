@@ -9,7 +9,7 @@ config :testing_live_view_wallaby, TestingLiveViewWallaby.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "sample_app_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "testing_live_view_wallaby_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 
