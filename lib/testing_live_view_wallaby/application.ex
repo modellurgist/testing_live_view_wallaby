@@ -8,16 +8,16 @@ defmodule TestingLiveViewWallaby.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      TestingLiveViewWallaby.Repo,
-      # Start the Telemetry supervisor
       TestingLiveViewWallabyWeb.Telemetry,
-      # Start the PubSub system
+      TestingLiveViewWallaby.Repo,
+      {DNSCluster, query: Application.get_env(:testing_live_view_wallaby, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: TestingLiveViewWallaby.PubSub},
-      # Start the Endpoint (http/https)
-      TestingLiveViewWallabyWeb.Endpoint
+      # Start the Finch HTTP client for sending emails
+      {Finch, name: TestingLiveViewWallaby.Finch},
       # Start a worker by calling: TestingLiveViewWallaby.Worker.start_link(arg)
-      # {TestingLiveViewWallaby.Worker, arg}
+      # {TestingLiveViewWallaby.Worker, arg},
+      # Start to serve requests, typically the last entry
+      TestingLiveViewWallabyWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

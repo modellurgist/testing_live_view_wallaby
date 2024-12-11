@@ -34,3 +34,6 @@ npm-debug.log
 
 # Wallaby failure screenshots
 screenshots/
+
+# Temporary files, for example, from tests.
+/tmp/

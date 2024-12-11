@@ -6,6 +6,7 @@ config :testing_live_view_wallaby, TestingLiveViewWallaby.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "testing_live_view_wallaby_dev",
+  stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -13,8 +14,8 @@ config :testing_live_view_wallaby, TestingLiveViewWallaby.Repo,
 # debugging and code reloading.
 #
 # The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with esbuild to bundle .js and .css sources.
+# watchers to your application. For example, we can use it
+# to bundle .js and .css sources.
 config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
@@ -22,10 +23,10 @@ config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "azm+/ME34TkjW3WUfRcnTfqzfD08vtVSQta6i8a+KhxKbAV4Y2AeTZwckbpELz5U",
+  secret_key_base: "aaaaaaaa",
   watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:testing_live_view_wallaby, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:testing_live_view_wallaby, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -36,7 +37,6 @@ config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
 #
 #     mix phx.gen.cert
 #
-# Note that this task requires Erlang/OTP 20 or later.
 # Run `mix help phx.gen.cert` for more information.
 #
 # The `http:` config above can be replaced with:
@@ -56,12 +56,14 @@ config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
 config :testing_live_view_wallaby, TestingLiveViewWallabyWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/testing_live_view_wallaby_web/(live|views)/.*(ex)$",
-      ~r"lib/testing_live_view_wallaby_web/templates/.*(eex)$"
+      ~r"lib/testing_live_view_wallaby/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
+
+# Enable dev routes for dashboard and mailbox
+config :testing_live_view_wallaby, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
@@ -72,3 +74,12 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :phoenix_live_view,
+  # Include HEEx debug annotations as HTML comments in rendered markup
+  debug_heex_annotations: true,
+  # Enable helpful, but potentially expensive runtime checks
+  enable_expensive_runtime_checks: true
+
+# Disable swoosh api client as it is only required for production adapters.
+config :swoosh, :api_client, false

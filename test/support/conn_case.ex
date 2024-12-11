@@ -19,21 +19,20 @@ defmodule TestingLiveViewWallabyWeb.ConnCase do
 
   using do
     quote do
+      # The default endpoint for testing
+      @endpoint TestingLiveViewWallabyWeb.Endpoint
+
+      use TestingLiveViewWallabyWeb, :verified_routes
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
       import TestingLiveViewWallabyWeb.ConnCase
-
-      alias TestingLiveViewWallabyWeb.Router.Helpers, as: Routes
-
-      # The default endpoint for testing
-      @endpoint TestingLiveViewWallabyWeb.Endpoint
     end
   end
 
   setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(TestingLiveViewWallaby.Repo, shared: not tags[:async])
-    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+    TestingLiveViewWallaby.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end
